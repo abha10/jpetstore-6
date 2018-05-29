@@ -7,7 +7,7 @@ pipeline {
         maven 'maven3' 
     }
     stages {
-        stage('Build'){
+        stage('Build & Test'){
           steps{
            sh 'mvn clean install'
         //   sh 'mvn cargo:run -P tomcat90'
@@ -27,17 +27,21 @@ pipeline {
         }
     }
     post {
-        always {
-            script {
+        success {
+            test_result = "success"
+            /*script {
                 if (test_result == "success") {
                     def response = httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: '${params.request_item_number}', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=success&request_item_number=' + "${params.request_item_number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
                 } else {
                     httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: '${params.request_item_number}', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=failure&request_item_number=' + "${params.request_item_number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
                 }
-            }
+            }*/
         }
-        /*failure {
-            echo "Pqr"
-        }*/
+        failure {
+            test_result = "failure"
+        }
+        always{
+            echo test_result
+        }
     }
 }
