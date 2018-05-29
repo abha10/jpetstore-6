@@ -13,7 +13,7 @@ pipeline {
         //   sh 'mvn cargo:run -P tomcat90'
           }
         }
-        stage('Test') {
+       /* stage('Test') {
             steps {
              //   sh 'mvn test -P itest'
                 script {
@@ -25,7 +25,7 @@ pipeline {
                 echo "Building ..."
             }
         }
-    }
+    }*/
     post {
         success {
             test_result = "success"
