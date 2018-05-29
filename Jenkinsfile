@@ -4,7 +4,7 @@ pipeline {
         test_result = ""
     }
     tools {
-        maven 'apache-maven-3.0.1' 
+        maven 'maven3' 
     }
     stages {
         stage('Build'){
