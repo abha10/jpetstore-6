@@ -27,7 +27,9 @@ pipeline {
     }
     post {
         success {
-            test_result = "success"
+            steps{
+                test_result = "success"
+            }
             /*script {
                 if (test_result == "success") {
                     def response = httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: '${params.request_item_number}', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=success&request_item_number=' + "${params.request_item_number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
@@ -37,10 +39,14 @@ pipeline {
             }*/
         }
         failure {
-            test_result = "failure"
+            steps{
+                test_result = "failure"
+            }
         }
         always{
-            echo test_result
+            steps{
+                echo test_result
+            }
         }
     }
 }
