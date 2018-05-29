@@ -255,7 +255,7 @@ public class ScreenTransitionIT {
 
     // Open the home page
     open("/");
-    assertThat(title()).isEqualTo("JPetStore Demo");
+    assertThat(title()).isEqualTo("JPetStore Demos");
 
     // Move to the top page
     $(By.linkText("Enter the Store")).click();
