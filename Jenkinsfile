@@ -17,15 +17,14 @@ pipeline {
             steps {
              //   sh 'mvn test -P itest'
                 script {
-
                     if ("${params.request_item_number}") {
                         test_result = "success";
                     }
                 }
                 echo "Building ..."
             }
-        }
-    }*/
+        }*/
+    }
     post {
         success {
             test_result = "success"
