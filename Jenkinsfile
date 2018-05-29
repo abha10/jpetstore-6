@@ -39,12 +39,14 @@ pipeline {
             }*/
         }
         failure {
+            echo "I failed"
             script{
                 test_result = "failure"
             }
         }
         always{
             script{
+                echo "I' in always"
                 echo test_result
             }
         }
