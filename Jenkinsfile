@@ -42,6 +42,7 @@ pipeline {
             echo "I failed"
             script{
                 test_result = "failure"
+                echo test_result
             }
         }
         always{
