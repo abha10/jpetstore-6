@@ -57,7 +57,8 @@ public class CatalogServiceTest {
     List<Product> r = catalogService.searchProductList(keywords);
 
     //then
-    assertThat(r).hasSize(2);
+    //assertThat(r).hasSize(2);
+     assertThat(r).hasSize(100);
     assertThat(r.get(0)).isSameAs(l1.get(0));
     assertThat(r.get(1)).isSameAs(l2.get(0));
   }
