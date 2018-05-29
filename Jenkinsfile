@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('Build'){
           steps{
-           sh 'mvn clean package'
-           sh 'mvn cargo:run -P tomcat90'
+           sh 'mvn clean install'
+        //   sh 'mvn cargo:run -P tomcat90'
           }
         }
         stage('Test') {
