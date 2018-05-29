@@ -27,7 +27,7 @@ pipeline {
     }
     post {
         success {
-            steps{
+            step{
                 test_result = "success"
             }
             /*script {
@@ -39,7 +39,7 @@ pipeline {
             }*/
         }
         failure {
-            steps{
+            step{
                 test_result = "failure"
             }
         }
