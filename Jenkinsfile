@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        test_result = ""
-    }
+  
     tools {
         maven 'maven3' 
     }
@@ -13,17 +11,7 @@ pipeline {
         //   sh 'mvn cargo:run -P tomcat90'
           }
         }
-       /* stage('Test') {
-            steps {
-             //   sh 'mvn test -P itest'
-                script {
-                    if ("${params.request_item_number}") {
-                        test_result = "success";
-                    }
-                }
-                echo "Building ..."
-            }
-        }*/
+  
     }
     post {
         success {
