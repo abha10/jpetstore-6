@@ -3,11 +3,14 @@ pipeline {
     environment {
         test_result = ""
     }
+    tools {
+        maven 'apache-maven-3.0.1' 
+    }
     stages {
         stage('Build'){
           steps{
-            mvn clean package
-            mvn cargo:run -P tomcat90
+           sh 'mvn clean package'
+           sh 'mvn cargo:run -P tomcat90'
           }
         }
         stage('Test') {
