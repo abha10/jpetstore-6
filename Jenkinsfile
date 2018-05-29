@@ -15,6 +15,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'mvn test -P itest'
                 script {
 
                     if ("${params.request_item_number}") {
