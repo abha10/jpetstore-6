@@ -44,7 +44,7 @@ pipeline {
             }
         }
         always{
-            steps{
+            script{
                 echo test_result
             }
         }
