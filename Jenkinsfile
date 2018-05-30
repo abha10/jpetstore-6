@@ -27,7 +27,7 @@ pipeline {
        	failure {
        	   script{
 			def response = httpRequest authentication: 'jenkins-creds', contentType: 'TEXT_PLAIN', ignoreSslErrors: true, url: 'http://34.248.134.77:8080/job/jetpetstore-pipleine/'+"${BUILD_NUMBER}"+'/consoleText'
-		   httpRequest authentication: 'snow-credential-id', contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, consoleLogResponseBody: true, requestBody:"${response.responseBody}" ,url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=FAILURE&request_item_number=' + "${params.Request_Item_Number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"  
+		   httpRequest authentication: 'snow-credential-id', contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, consoleLogResponseBody: true, requestBody:"${response.getResponseBodyAsString()}" ,url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=FAILURE&request_item_number=' + "${params.Request_Item_Number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"  
        		}
        	}
      }
