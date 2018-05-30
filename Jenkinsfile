@@ -25,7 +25,7 @@ pipeline {
     }
     failure {
      script {
-      def response = httpRequest authentication: 'jenkins-creds', contentType: 'TEXT_PLAIN', ignoreSslErrors: true, url: 'http://jenkins.agile.env.ecs.digital/job/jetpetstore-pipleine/' + "${BUILD_NUMBER}" + '/consoleText';
+      def response = httpRequest authentication: 'jenkins-creds', contentType: 'TEXT_PLAIN', ignoreSslErrors: true, url: 'http://jenkins.agile.env.ecs.digital/job/'+"${JOB_NAME}"+'/'+ "${BUILD_NUMBER}" + '/consoleText';
 
       def snow_post = httpRequest authentication: 'snow_auth', contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, consoleLogResponseBody: true, requestBody: "${response.content}", url: 'https://ven02314.service-now.com/api/x_ecsd_barclays_sn/jenkins_post?status=FAILURE&request_item_number=' + "${params.Request_Item_Number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
      }
