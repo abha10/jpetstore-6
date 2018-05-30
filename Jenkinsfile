@@ -2,8 +2,8 @@ pipeline {
     agent any
   
     tools {
-        maven 'mvn' 
-        //maven 'maven3' 
+       // maven 'mvn' 
+        maven 'maven3' 
     }
     stages {
         stage('Build & Test'){
@@ -17,7 +17,7 @@ pipeline {
     post {
         success {
             script{
-                 def response = httpRequest authentication: 'dev-snow-credential-id', contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=SUCCESS&request_item_number=' + "${params.Request_Item_Number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
+                 def response = httpRequest authentication: 'snow-credential-id', contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=SUCCESS&request_item_number=' + "${params.Request_Item_Number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
             }
             /*script {
                 if (test_result == "success") {
@@ -29,8 +29,12 @@ pipeline {
         }
         failure {
             script{
-                httpRequest authentication: 'dev-snow-credential-id', contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=FAILURE&request_item_number=' + "${params.Request_Item_Number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
+                httpRequest authentication: 'snow-credential-id', contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=FAILURE&request_item_number=' + "${params.Request_Item_Number}" + '&job_name=' + "${JOB_NAME}" + '&build_number=' + "${BUILD_NUMBER}"
+                
             }
+        }
+        always{
+            echo currentBuild.rawBuild.log
         }
     }
 }
