@@ -20,16 +20,10 @@ node('master') {
         withMaven(maven: 'Maven 3') {
         //dir('app') {
             sh 'mvn clean package'
-            dockerCmd 'build --tag abhaya/jpetstore:SNAPSHOT .'
+           // dockerCmd 'build --tag abhaya/jpetstore:SNAPSHOT .'
          //}
         }
     }
-	stage('Deploy') {
-	//dir('app') {
-		dockerCmd 'run -d -p 9999:9999 --name "snapshot" --network="host" abhaya/jpetstore:SNAPSHOT'
-	//}
-	}
-
   }
 }
 
